@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+
+import DisplayProducts from "./components/DisplayProducts.tsx";
+import AddProducts from "./components/AddProducts.tsx";
+
+const productData = [
+  {
+    name: "iphone",
+    description: "this  is the best product",
+    price: "Rs 2000.00",
+    quantity: "1",
+  },
+  {
+    name: "Oppo",
+    description: "this  is the best product",
+    price: "Rs 4000.00",
+    quantity: "1",
+  },
+];
 
 function App() {
+  const [showform, setShowform] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <DisplayProducts
+        data={productData}
+        showform={showform}
+        setShowform={setShowform}
+      />
+      {showform && <AddProducts setShowform={setShowform} />}
+    </main>
   );
 }
 
